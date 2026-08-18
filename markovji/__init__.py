@@ -26,6 +26,7 @@ class Rule:
     lhs: Pattern
     rhs: Pattern
     var_count: int
+    emit: Optional[str] = None
 
 
 @dataclass
@@ -51,14 +52,22 @@ class Pattern:
                     return None
                 bindings['$O'] = tape[start:p]
             elif elem.startswith('$'):
-                # Variable: bind to one or more ':' greedily
+                # Variable: if already bound, match exact bound value; else bind greedily
                 var_name = elem
-                start = p
-                while p < len(tape) and tape[p] == ':':
-                    p += 1
-                if p == start:
-                    return None
-                bindings[var_name] = tape[start:p]
+                if var_name in bindings:
+                    # Match exact bound value
+                    bound_val = bindings[var_name]
+                    if tape[p:p+len(bound_val)] != bound_val:
+                        return None
+                    p += len(bound_val)
+                else:
+                    # Bind greedily (one or more ':')
+                    start = p
+                    while p < len(tape) and tape[p] == ':':
+                        p += 1
+                    if p == start:
+                        return None
+                    bindings[var_name] = tape[start:p]
             else:
                 return None
         return p, bindings
@@ -128,8 +137,17 @@ class KaomojiMarkov:
         lhs_str, rest = line.split(':3', 1)
         rhs_str, _ = rest.split('xD', 1)
         
-        lhs = self._parse_pattern(lhs_str.strip())
-        rhs = self._parse_pattern(rhs_str.strip())
+        lhs_str = lhs_str.strip()
+        rhs_str = rhs_str.strip()
+        
+# Handle emit prefix ~ (like jajaja: ~text emits text, ~ alone emits newline)
+        emit = None
+        if rhs_str.startswith('~'):
+            emit = rhs_str[1:] if len(rhs_str) > 1 else '\n'
+            rhs_str = ''  # RHS pattern is empty for emit rules
+        
+        lhs = self._parse_pattern(lhs_str)
+        rhs = self._parse_pattern(rhs_str) if rhs_str else Pattern([])
         
         # Count max variable index used
         var_indices = set()
@@ -138,7 +156,7 @@ class KaomojiMarkov:
                 var_indices.add(int(elem[1:]))
         var_count = max(var_indices) + 1 if var_indices else 0
         
-        self.rules.append(Rule(lhs, rhs, var_count))
+        self.rules.append(Rule(lhs, rhs, var_count, emit))
 
     def _parse_pattern(self, s: str) -> Pattern:
         elements = []
@@ -196,16 +214,18 @@ class KaomojiMarkov:
             match = rule.lhs.match(self.tape)
             if match:
                 end_pos, bindings = match
-                rhs_expanded = rule.rhs.substitute(bindings)
                 
-                # Handle emit marker ~
-                if rhs_expanded.startswith('~'):
-                    # Emit everything after ~ and remove match from tape
-                    emitted = rhs_expanded[1:] if len(rhs_expanded) > 1 else '\n'
+                # Handle emit rule
+                if rule.emit is not None:
+                    # Substitute variables in emit text ($0, $1, $O, etc.)
+                    emitted = rule.emit
+                    for var, val in bindings.items():
+                        emitted = emitted.replace(var, val)
                     self.output.append(emitted)
                     self.tape = self.tape[end_pos:]
                 else:
                     # Normal replacement
+                    rhs_expanded = rule.rhs.substitute(bindings)
                     self.tape = self.tape[:0] + rhs_expanded + self.tape[end_pos:]
                 return True
         return False

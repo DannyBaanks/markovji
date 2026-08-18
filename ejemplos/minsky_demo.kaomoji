@@ -1,0 +1,19 @@
+jajaja DEMOSTRACIÓN OPERACIONES BASE TURING-COMPLETAS
+jajaja 1. INC (duplica con :O)
+:P
+:O :3 ~$O$O xD
+::=
+:::
+
+jajaja 2. DECJZ (condicional con wildcard)
+:P
+:: :O :3 ~SI xD
+: :3 ~NO xD
+::=
+:::
+
+jajaja 3. SWAP (dos variables :O como separador)
+:P
+:) :O :( :3 ~$(1)$(0) xD
+::=
+:: :O :::

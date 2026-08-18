@@ -1,0 +1,16 @@
+jajaja TEST MINSKY PASO A PASO — ejecuta cada programa por separado
+
+jajaja ===== 1. INC (duplica) =====
+jajaja markovji ejemplos/minsky_inc.kaomoji
+
+jajaja ===== 2. DEC (resta 1) =====
+jajaja markovji ejemplos/minsky_dec.kaomoji
+
+jajaja ===== 3. CONDICIONAL (wildcard) =====
+jajaja markovji ejemplos/minsky_cond.kaomoji
+
+jajaja ===== 4. SWAP (variables) =====
+jajaja markovji ejemplos/intercambio.kaomoji
+
+jajaja ===== 5. MÁQUINA 2 CONTADORES (simulada) =====
+jajaja markovji ejemplos/minsky_2cnt.kaomoji
