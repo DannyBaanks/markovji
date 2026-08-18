@@ -21,7 +21,7 @@ classifiers = [
 ]
 
 [project.scripts]
-markovji = "interpreter:main"
+markovji = "markovji_interpreter:main"
 
 [project.urls]
 Repository = "https://github.com/ISyCo/markovji"
