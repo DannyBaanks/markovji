@@ -6,7 +6,7 @@ readme = "README.md"
 license = {text = "MIT"}
 requires-python = ">=3.10"
 authors = [
-    {name = "ISyCo", email = "isyco@local"}
+    {name = "ISyCo", email = "isyco@example.com"}
 ]
 keywords = ["esolang", "markov", "rewriting", "turing-complete", "kaomoji", "unary"]
 classifiers = [
