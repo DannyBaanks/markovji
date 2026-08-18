@@ -1,0 +1,34 @@
+{
+  "name": "kaomoji_markov",
+  "version": "1.0.0",
+  "description": "Markov algorithm esolang with kaomoji syntax. Turing-complete rewriting system over unary alphabet.",
+  "author": "ISyCo",
+  "license": "MIT",
+  "category": "esoteric",
+  "subcategory": "markov",
+  "entry_point": "interpreter.py",
+  "interface": "cli",
+  "syntax": {
+    "atoms": [":"],
+    "program_start": ":P",
+    "wildcard": ":O",
+    "separator": ":3",
+    "terminator": "xD",
+    "variables": [":)", ":(", ":D", ":]", ":[", "; )"],
+    "comment": "jajaja"
+  },
+  "semantics": "markov_algorithm",
+  "turing_complete": true,
+  "examples": [
+    "examples/hello.kaomoji",
+    "examples/increment.kaomoji",
+    "examples/decrement.kaomoji",
+    "examples/copy.kaomoji",
+    "examples/swap.kaomoji",
+    "examples/reverse.kaomoji",
+    "examples/busy.kaomoji"
+  ],
+  "tests": ["tests/test_interpreter.py"],
+  "dependencies": [],
+  "keywords": ["esolang", "markov", "rewriting", "turing-complete", "kaomoji"]
+}
