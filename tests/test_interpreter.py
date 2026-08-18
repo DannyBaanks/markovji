@@ -3,7 +3,7 @@
 
 import sys
 sys.path.insert(0, str(__file__.replace('tests\\test_interpreter.py', '')))
-from markovji_interpreter import run, KaomojiMarkov
+from markovji import run, KaomojiMarkov
 
 
 def test_hola():
