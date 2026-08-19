@@ -2,7 +2,7 @@
   "name": "kaomoji_markov",
   "version": "1.0.0",
   "description": "Markov algorithm esolang with kaomoji syntax. Turing-complete rewriting system over unary alphabet.",
-  "author": "ISyCo",
+  "author": "DannyBaanks",
   "license": "MIT",
   "category": "esoteric",
   "subcategory": "markov",

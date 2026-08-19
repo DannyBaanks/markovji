@@ -6,7 +6,7 @@ readme = "README.md"
 license = {text = "MIT"}
 requires-python = ">=3.10"
 authors = [
-    {name = "ISyCo", email = "isyco@example.com"}
+    {name = "DannyBaanks"}
 ]
 keywords = ["esolang", "markov", "rewriting", "turing-complete", "kaomoji", "unary"]
 classifiers = [
@@ -24,8 +24,8 @@ classifiers = [
 markovji = "markovji:main"
 
 [project.urls]
-Repository = "https://github.com/ISyCo/markovji"
-Issues = "https://github.com/ISyCo/markovji/issues"
+Repository = "https://github.com/DannyBaanks/Markovji"
+Issues = "https://github.com/DannyBaanks/Markovji/issues"
 
 [build-system]
 requires = ["setuptools>=61.0", "wheel"]

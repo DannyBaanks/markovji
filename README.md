@@ -146,7 +146,7 @@ python tests/test_interpreter.py
 
 ## 📜 Licencia
 
-MIT — Parte del zoológico **ISyCo** → `12_esoteric_research/markovji`
+MIT — ver [LICENSE](LICENSE).
 
 ---
 
